@@ -79,7 +79,6 @@ class AmazonSearchSpider(scrapy.Spider):
 
             yield items 
                    
-        
         next_page = response.xpath("//div[@role='navigation' and @class='a-section a-text-center s-pagination-container']/span[@class='s-pagination-strip']/a[@class='s-pagination-item s-pagination-next s-pagination-button s-pagination-separator']/@href").get()
             
         if next_page:
