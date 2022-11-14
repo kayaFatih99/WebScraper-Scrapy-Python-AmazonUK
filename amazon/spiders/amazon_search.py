@@ -19,10 +19,10 @@ class AmazonSearchSpider(scrapy.Spider):
             Important :
                 Tested only on amazon UK and in all categories within categories. This code may also give errors to 
             different amazon pages. It can be updated according to the desired features.
-        """)  
+            """)  
 
         search = []
-        category = int(input(f"page data : Please specify product category. (Exp: (Enter :) ) => All category) => "))
+        category = input(f"page data : Please specify product category. (Exp: (Enter :) ) => All category) => ")
         text = input(f"page data : Please enter search text. (Exp : baby car) => ")
         search.append(f'https://www.amazon.co.uk/s?k={text}&i={category}')
 
@@ -78,7 +78,8 @@ class AmazonSearchSpider(scrapy.Spider):
             items['discountRate'] = discountRateTwo
 
             yield items 
-                   
+
+                 
         next_page = response.xpath("//div[@role='navigation' and @class='a-section a-text-center s-pagination-container']/span[@class='s-pagination-strip']/a[@class='s-pagination-item s-pagination-next s-pagination-button s-pagination-separator']/@href").get()
             
         if next_page:
@@ -86,6 +87,7 @@ class AmazonSearchSpider(scrapy.Spider):
             print(f"sonraki sayfa link => {full_link}")
             yield scrapy.Request(url=full_link, callback=self.parse)
         
+
         open_in_browser(response)
         
 
